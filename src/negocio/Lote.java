@@ -1,5 +1,7 @@
+package negocio;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,22 +14,38 @@ import java.util.ArrayList;
  */
 public class Lote {
 
-    private ArrayList<Bens> listaBens;
+    private List<Bens> listaBens;
     private double precoMinimo;
 
     public Lote(Bens bens, double precoMinimo) {
         listaBens = new ArrayList<>();
         this.precoMinimo = precoMinimo;
+        listaBens.add(bens);
     }
 
-    public void adicionaBens(Bens b) {
-        listaBens.add(b);
+    public double getPrecoMinimo() {
+        return precoMinimo;
     }
 
     public void setPrecoMinimo(double precoMinimo) {
         this.precoMinimo = precoMinimo;
     }
-    
-    
-    
+
+    public List<Bens> getListaBens() {
+        return listaBens;
+    }
+
+    public void setListaBens(List<Bens> listaBens) {
+        this.listaBens = listaBens;
+    }
+
+    public boolean adicionaBens(Bens b) {
+        for (Bens bens : listaBens) {
+            if (bens.getCodigo() == b.getCodigo()) {
+                return true;
+            }
+        }
+        return listaBens.add(b);
+    }
+
 }

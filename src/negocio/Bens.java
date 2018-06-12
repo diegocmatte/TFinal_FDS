@@ -1,20 +1,32 @@
+package negocio;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Diego Cansi Matte <diego.cansi at ibm.com>
  */
 public class Bens {
-    private String descricaoBreve, descricaoCompleta, categoria;
 
-    public Bens(String descricaoBreve, String descricaoCompleta, String categoria) {
+    private String descricaoBreve, descricaoCompleta, categoria;
+    private int codigo;
+
+    public Bens(int codigo, String descricaoBreve, String descricaoCompleta, String categoria) {
+        this.codigo = codigo;
         this.descricaoBreve = descricaoBreve;
         this.descricaoCompleta = descricaoCompleta;
         this.categoria = categoria;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricaoBreve() {
@@ -40,6 +52,5 @@ public class Bens {
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
-    
-    
+
 }
