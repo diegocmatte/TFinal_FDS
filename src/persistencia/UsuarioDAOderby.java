@@ -19,7 +19,7 @@ public class UsuarioDAOderby implements UsuarioDAO {
 
     @Override
     public void inserir(Usuario u) throws DAOUsuarioException {
-        String sql = "insert into bens(codigo,descricaoBreve,descricaoCompleta,categoria) values(?,?,?,?)";
+        String sql = "insert into usuario(codigo,descricaoBreve,descricaoCompleta,categoria) values(?,?,?,?)";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
