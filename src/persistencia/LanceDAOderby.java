@@ -19,12 +19,13 @@ public class LanceDAOderby implements LanceDAO{
 
     @Override
     public void inserir(Lance l) throws DAOLanceException {
-        String sql = "insert into lance(comprador,valor) values(?,?)";
+        String sql = "insert into lance(comprador,leilao,valor) values(?,?,?)";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setObject(1, l.getC());
-                comando.setDouble(2, l.getValor());
+                comando.setObject(1, l.getComprador().getCpfCnpj());
+                comando.setObject(2, l.getLeilao());
+                comando.setDouble(3, l.getValor());
                 resultado = comando.executeUpdate();
             }
         } catch (Exception e) {
@@ -37,11 +38,11 @@ public class LanceDAOderby implements LanceDAO{
 
     @Override
     public void deletar(Lance l) throws DAOLanceException {
-        String sql = "delete from lance where comprador = ?";
+        String sql = "delete from lance where leilao = ?";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setObject(1, l.getC().getEmail());
+                comando.setObject(1, l.getLeilao());
                 resultado = comando.executeUpdate();
             }
         } catch (Exception e) {

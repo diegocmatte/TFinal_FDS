@@ -10,20 +10,25 @@ package negocio;
  * @author Diego Cansi Matte <diego.cansi at ibm.com>
  */
 public class Lance {
-    private Comprador c;
+    private Comprador comprador;
+    private Leilao leilao;
     private double valor;
 
-    public Lance(Comprador c, double valor) {
-        this.c = c;
+    public Lance(Comprador comprador, Leilao leilao, double valor) {
+        this.comprador = comprador;
+        this.leilao = leilao;
         this.valor = valor;
     }
 
-    public Comprador getC() {
-        return c;
+    public Comprador getComprador() {
+        return comprador;
     }
 
     public double getValor() {
         return valor;
     }
-    
+
+    public Leilao getLeilao() {
+        return leilao;
+    }    
 }

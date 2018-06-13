@@ -32,29 +32,42 @@ public class InicializadorBancoDadosDataSource {
     public static void criarBd() throws Exception {
         try (Connection con = criarDataSource().getConnection();
                 Statement sta = con.createStatement()) {
-            String sqlAutor = "CREATE TABLE AUTORES("
+            String sqlComprador = "CREATE TABLE COMPRADOR("
                     + "CODIGO int PRIMARY KEY NOT NULL,"
-                    + "PRIMEIRONOME varchar(100) NOT NULL,"
-                    + "ULTIMONOME varchar(100) NOT NULL)";
-            sta.executeUpdate(sqlAutor);
-            String sqlEditora = "CREATE TABLE EDITORAS("
+                    + "NOME varchar(100) NOT NULL,"
+                    + "EMAIL varchar(100) NOT NULL"
+                    + "CPFCNPJ varchar(100) NOT NULL)";
+            sta.executeUpdate(sqlComprador);
+            String sqlBens = "CREATE TABLE BENS("
+                    + "CODIGO int PRIMARY KEY NOT NULL,"
+                    + "DESCRICAOBREVE varchar(100) NOT NULL,"
+                    + "DESCRICAOCOMPLETA varchar(300) NOT NULL,"
+                    + "CATEGORIA varchar(100) NOT NULL)";
+            sta.executeUpdate(sqlBens);
+            String sqlLance = "CREATE TABLE LANCE("
+                    + "CODIGO int PRIMARY KEY NOT NULL,"
+                    + "VALOR float NOT NULL)";
+            sta.executeUpdate(sqlLance);
+            String sqlVendedor = "CREATE TABLE LIVROSAUTORES("
                     + "CODIGO int PRIMARY KEY NOT NULL,"
                     + "NOME varchar(100) NOT NULL)";
-            sta.executeUpdate(sqlEditora);
-            String sqlLivro = "CREATE TABLE LIVROS("
-                    + "CODIGO int PRIMARY KEY NOT NULL,"
-                    + "TITULO varchar(100) NOT NULL,"
-                    + "ANO int NOT NULL,"
-                    + "CODEDITORA int NOT NULL,"
-                    + "CONSTRAINT FK_EDITORAS FOREIGN KEY (CODEDITORA) REFERENCES EDITORAS(CODIGO))";
-            sta.executeUpdate(sqlLivro);
-            String sqlLivroAutor = "CREATE TABLE LIVROSAUTORES("
-                    + "CODLIVRO int NOT NULL,"
-                    + "CODAUTOR int NOT NULL,"
-                    + "CONSTRAINT PK_LIVROSAUTORES PRIMARY KEY (CODLIVRO,CODAUTOR),"
-                    + "CONSTRAINT FK_LIVROS FOREIGN KEY (CODLIVRO) REFERENCES LIVROS(CODIGO),"
-                    + "CONSTRAINT FK_AUTORES FOREIGN KEY (CODAUTOR) REFERENCES AUTORES(CODIGO))";
-            sta.executeUpdate(sqlLivroAutor);
+            sta.executeUpdate(sqlVendedor);
+            String sqlLote = "CREATE TABLE LOTE("
+                    + "PRECOMINIMO float NOT NULL)";
+            sta.executeUpdate(sqlLote);
+            String sqlLeilao = "CREATE TABLE LEILAO("
+                    + "STATUS varchar(10) NOT NULL)";
+            sta.executeUpdate(sqlLeilao);
+        }
+    }
+
+    //atualizar tabelas: LANCE, LOTE e LEILAO
+    public static void atualizarColunasTabelas() throws Exception {
+        try (Connection con = criarDataSource().getConnection();
+                Statement sta = con.createStatement()) {
+            String updateLance = "ALTER TABLE LANCE ADD COMPRADOR COMPRADOR"
+                    + "ALTER TABLE LANCE ADD LEILAO LEILAO;";
+            sta.executeUpdate(updateLance);
         }
     }
 
