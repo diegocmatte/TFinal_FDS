@@ -9,7 +9,7 @@ package negocio;
  *
  * @author 08104810
  */
-public interface UsuarioDAO {
+public interface CompradorDAO {
     
-    void inserir(Usuario u) throws DAOUsuarioException;
+    void inserir(Comprador c) throws DAOCompradorException;
 }

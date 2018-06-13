@@ -9,14 +9,13 @@ package negocio;
  *
  * @author Diego Cansi Matte <diego.cansi at ibm.com>
  */
-public class Usuario {
+public class Comprador {
 
-    private String nome, email, cpfCnpj, tipo;
+    private String nome, email, cpfCnpj;
 
-    public Usuario(String nome, String email, String cpfCnpj, String tipo) {
+    public Comprador(String nome, String email, String cpfCnpj) {
         this.nome = nome;
         this.email = email;
-        this.tipo = tipo;
     }
 
     public String getNome() {
@@ -43,11 +42,4 @@ public class Usuario {
         this.cpfCnpj = cpfCnpj;
     }
 
-    public String getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
-    }
 }

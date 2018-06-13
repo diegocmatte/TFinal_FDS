@@ -9,17 +9,17 @@ package negocio;
  *
  * @author 08104810
  */
-public class DAOUsuarioException extends Exception {
+public class DAOCompradorException extends Exception {
 
-    public DAOUsuarioException() {
+    public DAOCompradorException() {
         super();
     }
 
-    public DAOUsuarioException(String mensagem) {
+    public DAOCompradorException(String mensagem) {
         super(mensagem);
     }
 
-    public DAOUsuarioException(String mensagem, Throwable causa) {
+    public DAOCompradorException(String mensagem, Throwable causa) {
         super(mensagem, causa);
     }
 }

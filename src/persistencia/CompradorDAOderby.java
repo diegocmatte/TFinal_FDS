@@ -7,33 +7,32 @@ package persistencia;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import negocio.DAOUsuarioException;
-import negocio.Usuario;
-import negocio.UsuarioDAO;
+import negocio.DAOCompradorException;
+import negocio.Comprador;
+import negocio.CompradorDAO;
 
 /**
  *
  * @author 08104810
  */
-public class UsuarioDAOderby implements UsuarioDAO {
+public class CompradorDAOderby implements CompradorDAO {
 
     @Override
-    public void inserir(Usuario u) throws DAOUsuarioException {
-        String sql = "insert into usuario(codigo,descricaoBreve,descricaoCompleta,categoria) values(?,?,?,?)";
+    public void inserir(Comprador c) throws DAOCompradorException {
+        String sql = "insert into usuario(codigo,descricaoBreve,descricaoCompleta) values(?,?,?)";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setString(1, u.getNome());
-                comando.setString(2, u.getEmail());
-                comando.setString(3, u.getCpfCnpj());
-                comando.setString(4, u.getTipo());
+                comando.setString(1, c.getNome());
+                comando.setString(2, c.getEmail());
+                comando.setString(3, c.getCpfCnpj());
                 resultado = comando.executeUpdate();
             }
         } catch (Exception e) {
-            throw new DAOUsuarioException("Falha na inserção", e);
+            throw new DAOCompradorException("Falha na inserção", e);
         }
         if (resultado == 0) {
-            throw new DAOUsuarioException("Falha na inserção");
+            throw new DAOCompradorException("Falha na inserção");
         }
     }
 }
