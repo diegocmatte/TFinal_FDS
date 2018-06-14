@@ -23,8 +23,8 @@ public class BensDAOderby implements BensDAO {
 
     @Override
     public List<Bens> buscarTodos() throws DAOBensException {
-        List<Bens> editoras = new ArrayList<>();
-        String sql = "select * bens editoras";
+        List<Bens> listaBens = new ArrayList<>();
+        String sql = "select * from bens";
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (Statement comando = conexao.createStatement()) {
                 try (ResultSet resultado = comando.executeQuery(sql)) {
@@ -35,9 +35,9 @@ public class BensDAOderby implements BensDAO {
                                 resultado.getString("descricaoCompleta"),
                                 resultado.getString("categora")
                         );
-                        editoras.add(bens);
+                        listaBens.add(bens);
                     }
-                    return editoras;
+                    return listaBens;
                 }
             }
         } catch (Exception e) {

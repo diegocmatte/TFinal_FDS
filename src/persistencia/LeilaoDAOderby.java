@@ -19,14 +19,15 @@ public class LeilaoDAOderby implements LeilaoDAO{
 
     @Override
     public void inserir(Leilao l) throws DAOLeilaoException {
-        String sql = "insert into lance(lote,vendedor,lance,status) values(?,?,?)";
+        String sql = "insert into lance(codigo,cod_lote,cod_vendedor,cod_lance,status) values(?,?,?,?)";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setObject(1, l.getLote());
-                comando.setObject(2, l.getVendedor());
-                comando.setObject(3, l.getLance());
-                comando.setString(4, l.getStatus());
+                comando.setInt(1, l.getCodigo());
+                comando.setInt(2, l.getLote().getCodigo());
+                comando.setInt(3, l.getVendedor().getCodigo());
+                comando.setInt(4, l.getLance().getCodigo());
+                comando.setString(5, l.getStatus());
                 resultado = comando.executeUpdate();
             }
         } catch (Exception e) {
@@ -38,13 +39,38 @@ public class LeilaoDAOderby implements LeilaoDAO{
     }
 
     @Override
-    public void alterarStatus(Leilao l) throws DAOLeilaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void encerrarLeilao(Leilao l) throws DAOLeilaoException {
+        String sql = "update leilao set status = ? where codigo = ?";
+        int resultado = 0;
+        try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
+            try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+                comando.setString(1, "Encerrado");
+                comando.setInt(1, l.getCodigo());
+                resultado = comando.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw new DAOLeilaoException("Falha na atualização", e);
+        }
+        if (resultado == 0) {
+            throw new DAOLeilaoException("Falha na atualização");
+        }
     }
 
     @Override
     public void buscarLeilao(Leilao l) throws DAOLeilaoException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String sql = "select * from leilao where codigo = ?";
+        int resultado = 0;
+        try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
+            try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+                comando.setInt(1, l.getCodigo());
+                resultado = comando.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw new DAOLeilaoException("Falha na busca", e);
+        }
+        if (resultado == 0) {
+            throw new DAOLeilaoException("Falha na busca");
+        }
     }
     
 }

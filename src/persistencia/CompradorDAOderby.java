@@ -19,13 +19,14 @@ public class CompradorDAOderby implements CompradorDAO {
 
     @Override
     public void inserir(Comprador c) throws DAOCompradorException {
-        String sql = "insert into usuario(codigo,descricaoBreve,descricaoCompleta) values(?,?,?)";
+        String sql = "insert into comprador(codigo,nome,email,cpfcnpj) values(?,?,?,?)";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setString(1, c.getNome());
-                comando.setString(2, c.getEmail());
-                comando.setString(3, c.getCpfCnpj());
+                comando.setInt(1, c.getCodigo());
+                comando.setString(2, c.getNome());
+                comando.setString(3, c.getEmail());
+                comando.setString(4, c.getCpfCnpj());
                 resultado = comando.executeUpdate();
             }
         } catch (Exception e) {

@@ -11,9 +11,11 @@ package negocio;
  */
 public class Comprador {
 
+    private int codigo;
     private String nome, email, cpfCnpj;
 
-    public Comprador(String nome, String email, String cpfCnpj) {
+    public Comprador(int codigo, String nome, String email, String cpfCnpj) {
+        this.codigo = codigo;
         this.nome = nome;
         this.email = email;
     }
@@ -42,4 +44,11 @@ public class Comprador {
         this.cpfCnpj = cpfCnpj;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
 }

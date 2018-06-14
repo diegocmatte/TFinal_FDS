@@ -10,12 +10,14 @@ package negocio;
  * @author Diego Cansi Matte <diego.cansi at ibm.com>
  */
 public class Leilao {
+    private int codigo;
     private Lote lote;
     private Vendedor vendedor;
     private Lance lance;
     private String status;
 
-    public Leilao(Lote lote, Vendedor vendedor, Lance lance, String status) {
+    public Leilao(int codigo,Lote lote, Vendedor vendedor, Lance lance, String status) {
+        this.codigo = codigo;
         this.lote = lote;
         this.vendedor = vendedor;
         this.lance = lance;
@@ -41,5 +43,11 @@ public class Leilao {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
+    
+    
     
 }

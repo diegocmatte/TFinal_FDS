@@ -11,6 +11,6 @@ package negocio;
  */
 public interface LeilaoDAO{
     void inserir (Leilao l) throws DAOLeilaoException;
-    void alterarStatus (Leilao l) throws DAOLeilaoException;
+    void encerrarLeilao (Leilao l) throws DAOLeilaoException;
     void buscarLeilao (Leilao l) throws DAOLeilaoException;
 }

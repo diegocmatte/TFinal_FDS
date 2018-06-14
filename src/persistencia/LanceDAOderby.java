@@ -15,7 +15,7 @@ import negocio.LanceDAO;
  *
  * @author Diego Cansi Matte <diego.cansi at ibm.com>
  */
-public class LanceDAOderby implements LanceDAO{
+public class LanceDAOderby implements LanceDAO {
 
     @Override
     public void inserir(Lance l) throws DAOLanceException {
@@ -23,8 +23,8 @@ public class LanceDAOderby implements LanceDAO{
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setObject(1, l.getComprador().getCpfCnpj());
-                comando.setObject(2, l.getLeilao());
+                comando.setInt(1, l.getComprador().getCodigo());
+                comando.setInt(2, l.getLeilao().getCodigo());
                 comando.setDouble(3, l.getValor());
                 resultado = comando.executeUpdate();
             }
@@ -38,11 +38,12 @@ public class LanceDAOderby implements LanceDAO{
 
     @Override
     public void deletar(Lance l) throws DAOLanceException {
-        String sql = "delete from lance where leilao = ?";
+        String sql = "delete from lance where "
+                + "(select codigo from leilao where codigo = ?)";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setObject(1, l.getLeilao());
+                comando.setObject(1, l.getLeilao().getCodigo());
                 resultado = comando.executeUpdate();
             }
         } catch (Exception e) {
@@ -52,7 +53,23 @@ public class LanceDAOderby implements LanceDAO{
             throw new DAOLanceException("Falha na remoção");
         }
     }
-    
-    
-    
+
+    @Override
+    public void buscarLance(Lance l) throws DAOLanceException {
+        String sql = "select * from lance where "
+                + "(select codigo from leilao where codigo = ?)";
+        int resultado = 0;
+        try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
+            try (PreparedStatement comando = conexao.prepareStatement(sql)) {
+                comando.setObject(1, l.getLeilao().getCodigo());
+                resultado = comando.executeUpdate();
+            }
+        } catch (Exception e) {
+            throw new DAOLanceException("Falha na busca", e);
+        }
+        if (resultado == 0) {
+            throw new DAOLanceException("Falha na busca");
+        }
+
+    }
 }

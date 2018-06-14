@@ -11,5 +11,6 @@ package negocio;
  */
 public interface LanceDAO {
     void inserir(Lance l) throws DAOLanceException;
+    void buscarLance(Lance l) throws DAOLanceException;
     void deletar(Lance l) throws DAOLanceException;
 }

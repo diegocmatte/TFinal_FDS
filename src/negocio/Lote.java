@@ -14,10 +14,12 @@ import java.util.List;
  */
 public class Lote {
 
+    private int codigo;
     private List<Bens> listaBens;
     private double precoMinimo;
 
-    public Lote(Bens bens, double precoMinimo) {
+    public Lote(int codigo, Bens bens, double precoMinimo) {
+        this.codigo = codigo;
         listaBens = new ArrayList<>();
         this.precoMinimo = precoMinimo;
         listaBens.add(bens);
@@ -47,5 +49,15 @@ public class Lote {
         }
         return listaBens.add(b);
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
+    
 
 }

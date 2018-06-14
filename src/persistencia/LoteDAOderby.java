@@ -19,12 +19,13 @@ public class LoteDAOderby implements LoteDAO{
 
     @Override
     public void inserir(Lote l) throws DAOLoteException {
-        String sql = "insert into lote(bens,precoMinimo) values(?,?)";
+        String sql = "insert into lote(codigo,bens,precoMinimo) values(?,?,?)";
         int resultado = 0;
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
-                comando.setObject(1, l.getListaBens());
-                comando.setDouble(2, l.getPrecoMinimo());
+                comando.setInt(1, l.getCodigo());
+                comando.setObject(2, l.getListaBens());
+                comando.setDouble(3, l.getPrecoMinimo());
                 resultado = comando.executeUpdate();
             }
         } catch (Exception e) {
