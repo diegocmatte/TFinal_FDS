@@ -48,6 +48,8 @@ public class Leilao {
         return codigo;
     }
     
-    
+    public void adicionaLance(Lance l) {
+      
+    }
     
 }
