@@ -24,9 +24,6 @@ public class LeilaoDAOderby implements LeilaoDAO{
         try (Connection conexao = InicializadorBancoDadosDataSource.conectarBd()) {
             try (PreparedStatement comando = conexao.prepareStatement(sql)) {
                 comando.setInt(1, l.getCodigo());
-                comando.setInt(2, l.getLote().getCodigo());
-                comando.setInt(3, l.getVendedor().getCodigo());
-                comando.setInt(4, l.getLance().getCodigo());
                 comando.setString(5, l.getStatus());
                 resultado = comando.executeUpdate();
             }

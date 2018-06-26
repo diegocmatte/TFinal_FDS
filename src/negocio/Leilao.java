@@ -5,35 +5,21 @@
  */
 package negocio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Diego Cansi Matte <diego.cansi at ibm.com>
  */
 public class Leilao {
     private int codigo;
-    private Lote lote;
-    private Vendedor vendedor;
-    private Lance lance;
     private String status;
+    private ArrayList<Lote> listaLote;
 
-    public Leilao(int codigo,Lote lote, Vendedor vendedor, Lance lance, String status) {
+    public Leilao(int codigo, String status) {
         this.codigo = codigo;
-        this.lote = lote;
-        this.vendedor = vendedor;
-        this.lance = lance;
         this.status = status;
-    }
-
-    public Lote getLote() {
-        return lote;
-    }
-
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
-
-    public Lance getLance() {
-        return lance;
+        listaLote = new ArrayList<>();
     }
 
     public String getStatus() {
@@ -47,9 +33,10 @@ public class Leilao {
     public int getCodigo() {
         return codigo;
     }
-    
-    public void adicionaLance(Lance l) {
-      
+
+    public ArrayList<Lote> getListaLote() {
+        return listaLote;
     }
+
     
 }

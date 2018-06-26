@@ -12,9 +12,9 @@ import org.apache.derby.jdbc.EmbeddedDataSource;
 
 public class InicializadorBancoDadosDataSource {
 
-    public static String DB_NAME = "cadastro";
+    public static String DB_NAME = "leilao";
     public static String USER_NAME = "usuario";
-    public static String PASSWORD = "senha";
+    public static String PASSWORD = "usuario";
     private static DataSource dataSource;
 
     private static DataSource criarDataSource() throws Exception {

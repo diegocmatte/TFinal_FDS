@@ -39,6 +39,11 @@ public class Principal extends javax.swing.JFrame {
 
         abrirLeilaoButton.setText("Visualizar leilão");
         abrirLeilaoButton.setToolTipText("");
+        abrirLeilaoButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                abrirLeilaoButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -69,6 +74,12 @@ public class Principal extends javax.swing.JFrame {
         CadastroLeilao cl = new CadastroLeilao();
         cl.setVisible(true);
     }//GEN-LAST:event_cadastroLeilaoButtonActionPerformed
+
+    private void abrirLeilaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_abrirLeilaoButtonActionPerformed
+        // TODO add your handling code here:
+        BuscaLeilao bl = new BuscaLeilao();
+        bl.setVisible(true);
+    }//GEN-LAST:event_abrirLeilaoButtonActionPerformed
 
     /**
      * @param args the command line arguments

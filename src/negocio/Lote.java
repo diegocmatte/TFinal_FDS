@@ -1,7 +1,6 @@
 package negocio;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -15,14 +14,18 @@ import java.util.List;
 public class Lote {
 
     private int codigo;
-    private List<Bens> listaBens;
+    private ArrayList<Bens> listaBens;
+    private ArrayList<Comprador> listaComprador;
     private double precoMinimo;
+    private Vendedor vendedor;
 
-    public Lote(int codigo, Bens bens, double precoMinimo) {
+    public Lote(int codigo, Bens bens, Vendedor vendedor, double precoMinimo) {
         this.codigo = codigo;
         listaBens = new ArrayList<>();
+        listaComprador = new ArrayList<>();
+        this.vendedor = vendedor;
         this.precoMinimo = precoMinimo;
-        listaBens.add(bens);
+
     }
 
     public double getPrecoMinimo() {
@@ -33,12 +36,28 @@ public class Lote {
         this.precoMinimo = precoMinimo;
     }
 
-    public List<Bens> getListaBens() {
+    public ArrayList<Bens> getListaBens() {
         return listaBens;
     }
 
-    public void setListaBens(List<Bens> listaBens) {
+    public void setListaBens(ArrayList<Bens> listaBens) {
         this.listaBens = listaBens;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public ArrayList<Comprador> getListaComprador() {
+        return listaComprador;
+    }
+
+    public Vendedor getVendedor() {
+        return vendedor;
     }
 
     public boolean adicionaBens(Bens b) {
@@ -50,14 +69,13 @@ public class Lote {
         return listaBens.add(b);
     }
 
-    public int getCodigo() {
-        return codigo;
+    public boolean adicionaComprador(Comprador c) {
+        for (Comprador comprador : listaComprador) {
+            if (comprador.getCodigo() == c.getCodigo()) {
+                return true;
+            }
+        }
+        return listaComprador.add(c);
     }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
-    }
-    
-    
 
 }

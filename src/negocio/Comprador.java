@@ -13,11 +13,13 @@ public class Comprador {
 
     private int codigo;
     private String nome, email, cpfCnpj;
+    private double lance;
 
-    public Comprador(int codigo, String nome, String email, String cpfCnpj) {
+    public Comprador(int codigo, String nome, String email, String cpfCnpj, double lance) {
         this.codigo = codigo;
         this.nome = nome;
         this.email = email;
+        this.lance = lance;
     }
 
     public String getNome() {
@@ -51,4 +53,13 @@ public class Comprador {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
+    public double getLance() {
+        return lance;
+    }
+
+    public void setLance(double lance) {
+        this.lance = lance;
+    }
+    
 }
